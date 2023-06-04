@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS 'greekprofile' DEFAULT CHARACTER SET utfs COLATE utf8_general_ci

@@ -1,0 +1,32 @@
+version: "3"
+services:
+    db:
+        container_name: mydb
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+          - 'net1'    
+        volumes:
+          - 'aws-vol1:/var/lib/mysql'  
+    app:
+        container_name: myapp
+        env_file:
+          - '.env'
+        links:
+            - "db"
+        build: ./
+        ports:
+            - "5000:5000"
+        networks:
+          - 'net1'    
+        volumes:
+          - '$PWD:/app'      
+networks:
+  net1: {}
+volumes:
+  aws-vol1:
+    driver: rexray/ebs  
+
